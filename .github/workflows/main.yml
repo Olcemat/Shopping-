@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OLCEMAT - T-shirts & Pull-overs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png'); /* Texture bois de fond */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: #d32f2f; /* Rouge Noël */
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            background-image: url('https://www.transparenttextures.com/patterns/diamond-tile.png');
+            background-size: cover;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 0;
+            flex: 1;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .product-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 2px solid #e53935; /* Bordure rouge */
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s;
+        }
+
+        .product-card img:hover {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 15px;
+            background-color: #f0f0f0;
+        }
+
+        .product-info h3 {
+            font-size: 1.2rem;
+            margin: 10px 0;
+            color: #d32f2f;
+        }
+
+        .product-info p {
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        .product-info button {
+            background-color: #388e3c; /* Vert Noël */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            font-size: 1.1rem;
+        }
+
+        .product-info button:hover {
+            background-color: #2e7d32;
+        }
+
+        #cartSummary {
+            background-color: #ffe0b2; /* Couleur de fond or pâle */
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #payButton {
+            background-color: #25D366;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            display: inline-block;
+            text-decoration: none;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+        }
+
+        #payButton:hover {
+            background-color: #20b55a;
+        }
+
+        #payButton:active {
+            background-color: #1e8e4d;
+        }
+
+        footer {
+            background-color: #d32f2f; /* Rouge Noël */
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            margin-top: auto;
+        }
+
+        footer p {
+            font-size: 1rem;
+        }
+
+        footer a {
+            color: #ffeb3b; /* Jaune doré */
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+                    <ul>
+                <li><a href="signup.html">S'inscrire</a></li>
+                <li><a href="login.html">Connexion</a></li>
+                    </ul>
+        <h2>Bienvenue sur 
+            <br>OLCEMAT-PAMANE</h1>
+        <p>Découvrez nos T-shirts, Pull-overs et Produits d'occasion - Spécial Noël</p>
+    </header>
+
+    <div class="container">
+        <div id="cartSummary">
+            <p>Nombre total de produits : <span id="totalProducts">0</span></p>
+            <p>Somme totale : <span id="totalPrice">0</span> €</p>
+            <a id="payButton" href="#" target="_blank">Payer via WhatsApp</a>
+        </div>
+
+        <div id="productList" class="product-gridWhite"></div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 OLCEMAT - Tous droits réservés</p>
+        <p><a href="#">Mentions légales</a> | <a href="#">Contact</a></p>
+    </footer>
+
+    <script>
+        // Liste des produits avec images, titres, et prix
+        const products = [
+            { id: 1, name: 'T-shirt Rouge', category: 'T-shirt', price: 5, img: 'rouge.jpg' },
+            { id: 2, name: 'Pull-over', category: 'Pull-over', price: 9, img: 'pullover.jpg' },
+            { id: 3, name: 'T-shirt Vert', category: 'T-shirt', price: 5, img: 'vert.jpg' },
+                { id: 1, name: 'T-shirt Blue', category: 'T-shirt', price: 5, img: 'bleu.jpg' },
+            { id: 2, name: 'Pull-over blanc', category: 'Pull-over', price: 9, img: 'pull-over Blanc.jpg' },
+            { id: 3, name: 'T-shirt rose', category: 'T-shirt', price: 5, img: 'rose.jpg' },
+                { id: 1, name: 'T-shirt violet', category: 'T-shirt', price: 5, img: 'violet.jpg' },
+            { id: 2, name: 'T-shirt orange', category: 'T-shirt', price: 5, img: 'orange.jpg' },
+            { id: 3, name: 'T-shirt cendre', category: 'T-shirt', price: 5, img: 'cendre.jpg' },
+    { id: 1, name: 'T-shirt noir', category: 'T-shirt', price: 5, img: 'noir.jpg' },
+            { id: 1, name: 'T-shirt marron', category: 'T-shirt', price: 5, img: 'marron.jpg' },
+    { id: 1, name: 'T-shirt gris', category: 'T-shirt', price: 5, img: 'gris.jpg' },
+            { id: 2, name: 'Pull-over noir', category: 'Pull-over', price: 9, img: 'pull-over Noir.jpg' },
+    { id: 1, name: 'T-shirt bleu', category: 'T-shirt', price: 5, img: 'bleu ciel.jpg' },
+            { id: 2, name: 'chapeau', category: 'chapeau', price: 5, img: 'chapeau.jpg' },
+   
+            { id: 2, name: 'Pull-over', category: 'Pull-over', price: 9, img: 'pull-over rouge.jpg' },
+            // Ajoutez plus de produits ici
+        ];
+
+        let cart = [];
+
+        function displayProducts() {
+            const productList = document.getElementById('productList');
+            productList.innerHTML = '';
+
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.classList.add('product-card');
+                productCard.innerHTML = `
+                    <img src="${product.img}" alt="${product.name}">
+                    <div class="product-info">
+                        <h3>${product.name}</h3>
+                        <p>${product.price} €</p>
+                        <button onclick="addToCart(${product.id})">Ajouter au panier</button>
+                    </div>
+                `;
+                productList.appendChild(productCard);
+            });
+        }
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                cart.push(product);
+                updateCartSummary();
+                alert('Produit ajouté au panier');
+            }
+        }
+
+        function updateCartSummary() {
+            const totalProducts = cart.length;
+            const totalPrice = cart.reduce((sum, product) => sum + product.price, 0);
+
+            document.getElementById('totalProducts').textContent = totalProducts;
+            document.getElementById('totalPrice').textContent = totalPrice.toFixed(2);
+
+            // Préparer le message détaillé pour WhatsApp
+            let message = `Bonjour, voici les détails de la commande :\n\n`;
+            cart.forEach((product, index) => {
+                message += `${index + 1}. ${product.name} - ${product.price} €\n`;
+            });
+            message += `\nTotal des produits : ${totalProducts}\nTotal à payer : ${totalPrice.toFixed(2)} €\n\nMerci de confirmer la commande.`;
+
+            // Générer le lien vers WhatsApp avec les détails du panier
+            document.getElementById('payButton').href = `https://wa.me/22898207231?text=${encodeURIComponent(message)}`;
+        }
+
+        displayProducts();
+    </script>
+
+</body>
+</html>
